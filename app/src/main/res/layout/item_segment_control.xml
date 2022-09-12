@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="segment"
+            type="com.example.trainkahahai.adapter.SegmentControlAdapter.Segment" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+
+        <TextView
+            android:id="@+id/segment_control_item_text"
+            style="@style/segmentControlTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@{segment.isSelected ? @drawable/selected_segment_item_background : @drawable/default_segment_item_background}"
+            android:text="@{segment.label}"
+            android:textColor="@{segment.isSelected ? @color/white : @color/disabled_label_color}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="trainViewModel"
+            type="com.example.trainkahahai.viewmodel.TrainViewModel" />
+
+        <import type="com.example.trainkahahai.viewmodel.TrainViewModel.TrainStation" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/splash_background"
+        android:scrollbars="none">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".activity.TrainActivity">
+
+            <com.example.trainkahahai.SegmentControlView
+                android:id="@+id/scvTrains"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                app:isViewClickable="@{!trainViewModel.showProgressBar}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.9"
+                app:onSegmentClickListener="@{trainViewModel::onTrainSelected}"
+                app:segments="@{trainViewModel.trainsList}"
+                app:selectedSegment="@{trainViewModel.selectedTrain}" />
+
+            <View
+                android:id="@+id/viewTrainStatusBackground"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="-10dp"
+                android:background="@drawable/train_status_background"
+                app:layout_constraintBottom_toBottomOf="@id/layout_ahmedabad"
+                app:layout_constraintEnd_toEndOf="@id/btnUpdateStation"
+                app:layout_constraintStart_toStartOf="@id/spnStations"
+                app:layout_constraintTop_toBottomOf="@id/scvTrains" />
+
+            <include
+                android:id="@+id/layout_anand"
+                layout="@layout/layout_station"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                app:hasTrainReached="@{trainViewModel.currentTrainStation == TrainStation.ANAND}"
+                app:layout_constraintEnd_toEndOf="@id/viewTrainStatusBackground"
+                app:layout_constraintStart_toStartOf="@id/viewTrainStatusBackground"
+                app:layout_constraintTop_toTopOf="@id/viewTrainStatusBackground"
+                app:stationName="@{@string/anand}" />
+
+            <include
+                android:id="@+id/layout_nadiad"
+                layout="@layout/layout_station"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:hasTrainReached="@{trainViewModel.currentTrainStation == TrainStation.NADIAD}"
+                app:layout_constraintEnd_toEndOf="@id/layout_anand"
+                app:layout_constraintStart_toStartOf="@id/layout_anand"
+                app:layout_constraintTop_toBottomOf="@id/layout_anand"
+                app:stationName="@{@string/nadiad}" />
+
+            <include
+                android:id="@+id/layout_mahemdabad"
+                layout="@layout/layout_station"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:hasTrainReached="@{trainViewModel.currentTrainStation == TrainStation.MAHEMDABAD}"
+                app:layout_constraintEnd_toEndOf="@id/layout_anand"
+                app:layout_constraintStart_toStartOf="@id/layout_anand"
+                app:layout_constraintTop_toBottomOf="@id/layout_nadiad"
+                app:stationName="@{@string/mahemdabad}" />
+
+            <include
+                android:id="@+id/layout_maninagar"
+                layout="@layout/layout_station"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:hasTrainReached="@{trainViewModel.currentTrainStation == TrainStation.MANINAGAR}"
+                app:layout_constraintEnd_toEndOf="@id/layout_anand"
+                app:layout_constraintStart_toStartOf="@id/layout_anand"
+                app:layout_constraintTop_toBottomOf="@id/layout_mahemdabad"
+                app:stationName="@{@string/maninagar}" />
+
+            <include
+                android:id="@+id/layout_ahmedabad"
+                layout="@layout/layout_station"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_10sdp"
+                app:hasTrainReached="@{trainViewModel.currentTrainStation == TrainStation.AHMEDABAD}"
+                app:layout_constraintBottom_toBottomOf="@id/viewTrainStatusBackground"
+                app:layout_constraintEnd_toEndOf="@id/layout_anand"
+                app:layout_constraintStart_toStartOf="@id/layout_anand"
+                app:layout_constraintTop_toBottomOf="@id/layout_maninagar"
+                app:stationName="@{@string/ahmedabad}" />
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/spnStations"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@drawable/edittext_round_default"
+                app:layout_constraintBottom_toBottomOf="@id/btnUpdateStation"
+                app:layout_constraintEnd_toStartOf="@id/btnUpdateStation"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/btnUpdateStation" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/_10sdp"
+                android:layout_height="0dp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:rotation="180"
+                android:src="@drawable/ic_up_arrow"
+                app:layout_constraintBottom_toBottomOf="@id/spnStations"
+                app:layout_constraintEnd_toEndOf="@id/spnStations"
+                app:layout_constraintTop_toTopOf="@id/spnStations" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnUpdateStation"
+                style="@style/baseButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:onClick="@{() -> trainViewModel.updateTrainStatus()}"
+                app:disableButton="@{trainViewModel.showProgressBar}"
+                app:enabledButtonText="@{@string/update}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/spnStations"
+                app:layout_constraintTop_toBottomOf="@id/viewTrainStatusBackground" />
+
+            <ProgressBar
+                style="@style/progressBarBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:isVisibleGone="@{trainViewModel.showProgressBar}"
+                app:layout_constraintBottom_toBottomOf="@id/btnUpdateStation"
+                app:layout_constraintEnd_toEndOf="@id/btnUpdateStation"
+                app:layout_constraintStart_toStartOf="@id/btnUpdateStation"
+                app:layout_constraintTop_toTopOf="@id/btnUpdateStation" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

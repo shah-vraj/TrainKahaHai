@@ -1,0 +1,58 @@
+<resources>
+    <string name="app_name">TrainKahaHai</string>
+    <string name="shared_prefs">SHARED_PREFS</string>
+    <string name="ok">OK</string>
+    <string name="error_title">Oops!</string>
+    <string name="update_successful">Station updated successfully</string>
+    <string name="update_unsuccessful">Failed to update station, error: %1$s</string>
+    <string name="submit">Submit</string>
+    <string name="update">Update</string>
+    <string name="login">Login</string>
+    <string name="signup">Sign up</string>
+    <string name="cannot_find_data">Cannot find station for train %1$s</string>
+    <string name="notification_message">The train has reached %1$s</string>
+
+    <string name="hint_username">Username</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+
+    <string name="empty_username">Username cannot be empty</string>
+    <string name="empty_email">Email cannot be empty</string>
+    <string name="empty_password">Password cannot be empty</string>
+    <string name="empty_string" />
+    <string name="wrong_email">Enter proper email</string>
+
+    <string name="check_if_user_in_app_key">IS_USER_IN_APP</string>
+    <string name="logged_in_user_id_key">LOGGED_IN_USER_ID</string>
+    <string name="is_user_logged_in_key">IS_USER_LOGGED_IN</string>
+
+    <string name="key_sankalp">09495_sankalp</string>
+    <string name="key_queen">19034_queen</string>
+    <string name="key_memu_return">09400_memu_return</string>
+    <string name="key_janta">19218_janta</string>
+    <string name="key_lokshakti">22928_lokshakti</string>
+
+    <string name="none">none</string>
+    <string name="anand">Anand</string>
+    <string name="nadiad">Nadiad</string>
+    <string name="mahemdabad">Mahemdabad</string>
+    <string name="maninagar">Maninagar</string>
+    <string name="ahmedabad">Ahmedabad</string>
+
+    <string-array name="trainList">
+        <item>09495: Sankalp</item>
+        <item>19034: Queen</item>
+        <item>09400: Memu-Return</item>
+        <item>19218: Janta</item>
+        <item>22928: Lokshakti</item>
+    </string-array>
+
+    <string-array name="stationsList">
+        <item>Reset selection</item>
+        <item>Anand</item>
+        <item>Nadiad</item>
+        <item>Mahemdabad</item>
+        <item>Maninagar</item>
+        <item>Ahmedabad</item>
+    </string-array>
+</resources>

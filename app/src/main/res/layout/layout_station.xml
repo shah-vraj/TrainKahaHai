@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="stationName"
+            type="String" />
+
+        <variable
+            name="hasTrainReached"
+            type="Boolean" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgStation"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_60sdp"
+            android:src="@drawable/ic_train_track"
+            android:scaleType="fitXY"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvStationName"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:gravity="center_vertical"
+            android:text="@{stationName}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintBottom_toBottomOf="@id/imgStation"
+            app:layout_constraintStart_toEndOf="@id/imgStation"
+            app:layout_constraintTop_toTopOf="@id/imgStation"
+            tools:text="Nadiad" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgTrain"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:src="@drawable/ic_train"
+            app:isVisibleGoneFadeInOutAnimated="@{hasTrainReached}"
+            app:layout_constraintBottom_toBottomOf="@id/imgStation"
+            app:layout_constraintEnd_toEndOf="@id/imgStation"
+            app:layout_constraintStart_toStartOf="@id/imgStation"
+            app:layout_constraintTop_toTopOf="@id/imgStation" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

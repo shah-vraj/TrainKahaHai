@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "149705234268",
+    "project_id": "trainkahahai",
+    "storage_bucket": "trainkahahai.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:149705234268:android:41454ac0008d1b13e05399",
+        "android_client_info": {
+          "package_name": "com.example.trainkahahai"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "149705234268-5fjmo29tq91shmbnag08h56poauek4kh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1A4S-sYPuiQrvtSawyLZZomTJbKbX8u8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "149705234268-5fjmo29tq91shmbnag08h56poauek4kh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="authenticationViewModel"
+            type="com.example.trainkahahai.viewmodel.AuthenticationViewModel" />
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/splash_background"
+        android:scrollbars="none">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> authenticationViewModel.dismissKeyboard()}"
+            tools:context=".activity.MainActivity">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imgAppLogo"
+                android:layout_width="@dimen/_150sdp"
+                android:layout_height="@dimen/_150sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:src="@drawable/ic_app_logo_mini"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.RoundImage" />
+
+            <com.example.trainkahahai.SegmentControlView
+                android:id="@+id/scvAuthentication"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                app:isViewClickable="@{!authenticationViewModel.showProgressBar}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imgAppLogo"
+                app:layout_constraintWidth_percent="0.6"
+                app:onSegmentClickListener="@{authenticationViewModel::onAuthenticationSegmentSelected}"
+                app:segments="@{authenticationViewModel.authenticationSegmentList}"
+                app:selectedSegment="@{authenticationViewModel.selectedAuthenticationType}" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etUsername"
+                style="@style/baseEditText"
+                android:layout_width="0dp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:hint="@string/hint_username"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:text="@={authenticationViewModel.userName}"
+                app:isVisibleGoneFadeInOutAnimated="@{authenticationViewModel.isNewUser}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/scvAuthentication"
+                app:layout_constraintWidth_percent="0.8" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etEmail"
+                style="@style/baseEditText"
+                android:layout_width="0dp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:hint="@string/hint_email"
+                android:imeOptions="actionNext"
+                android:inputType="textEmailAddress"
+                android:text="@={authenticationViewModel.userEmail}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/etUsername"
+                app:layout_constraintWidth_percent="0.8" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etPassword"
+                style="@style/baseEditText"
+                android:layout_width="0dp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:hint="@string/hint_password"
+                android:imeOptions="actionDone"
+                android:inputType="textPassword"
+                android:text="@={authenticationViewModel.userPassword}"
+                app:layout_constraintEnd_toEndOf="@id/etEmail"
+                app:layout_constraintStart_toStartOf="@id/etEmail"
+                app:layout_constraintTop_toBottomOf="@id/etEmail" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvErrorMessage"
+                style="@style/baseTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="@{authenticationViewModel.showErrorMessage}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/etPassword" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnSubmit"
+                style="@style/baseButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:onClick="@{() -> authenticationViewModel.authenticateUser()}"
+                app:disableButton="@{authenticationViewModel.showProgressBar}"
+                app:enabledButtonText="@{@string/submit}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvErrorMessage"
+                app:layout_constraintWidth_percent="0.5" />
+
+            <ProgressBar
+                style="@style/progressBarBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:isVisibleGone="@{authenticationViewModel.showProgressBar}"
+                app:layout_constraintBottom_toBottomOf="@id/btnSubmit"
+                app:layout_constraintEnd_toEndOf="@id/btnSubmit"
+                app:layout_constraintStart_toStartOf="@id/btnSubmit"
+                app:layout_constraintTop_toTopOf="@id/btnSubmit" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>
